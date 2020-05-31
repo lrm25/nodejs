@@ -15,14 +15,16 @@ var server = http.createServer(function (request, response) {
   var call = request.url.toLowerCase().replace('/','');
   var result
   if (call === flip) {
-    result = "You win."
+    result = "<p style=\"color:green\">You win.</p>"
   } else {
-    result = "You LOSE!"
+    result = "<p style=\"color:red\">You LOSE!</p>"
   }
   response.write('<!DOCTYPE html>\n<html><title>The Grand Result</title><body>');
   if (call === "heads" || call === "tails") {
-    response.write('You called ' + call + '.  It\'s ' + flip + '.  ' + result);
+    response.write('<h3>The Grand Result</h3>')
+    response.write('You called ' + call + '.  It\'s ' + flip + '.  <b>' + result + '</b>');
   } else {
+    response.write('<h3>Derp</h3>')
     response.write('You called ' + call + ', which is neither heads nor tails, so of course you lose.');
   }
   response.end('</body></html>');
