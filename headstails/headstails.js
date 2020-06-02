@@ -14,12 +14,17 @@ var server = http.createServer(function (request, response) {
   }
   var call = request.url.toLowerCase().replace('/','');
   var result
+  var bgColor
   if (call === flip) {
     result = "<p style=\"color:green\">You win.</p>"
+    bgColor = "#90EE90"
   } else {
     result = "<p style=\"color:red\">You LOSE!</p>"
+    bgColor = "#EE9090"
   }
-  response.write('<!DOCTYPE html>\n<html><title>The Grand Result</title><body>');
+  response.write('<!DOCTYPE html>\n<html><head><title>The Grand Result</title>')
+  response.write('<style>body{background-color: ' + bgColor + '}</style>')
+  response.write('</head><body>');
   if (call === "heads" || call === "tails") {
     response.write('<h3>The Grand Result</h3>')
     response.write('You called ' + call + '.  It\'s ' + flip + '.  <b>' + result + '</b>');
